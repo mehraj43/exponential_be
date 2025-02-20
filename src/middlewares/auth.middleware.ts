@@ -13,7 +13,6 @@ export const jwtVerify = async (
 ) => {
   try {
     const response: any = await verifyTokenHelper(req, res);
-    console.log('response', response);
     if (!response.user) return false;
 
     const user: USER = response.user;
@@ -27,7 +26,6 @@ export const jwtVerify = async (
 export const verifyTokenHelper = async (req: Request | any, res: Response) => {
   try {
     const authToken: string = req.headers['authorization']?.split(' ')[1];
-    console.log('authToken', authToken);
     const secretKey: string = env.JWT_TOKEN_KEY as string;
     if (authToken == null) {
       throw new UnauthorizedError('Unauthorized User');
